@@ -86,20 +86,22 @@ const style = makeStyles({
         alignItems: `center`
     },
     container: {
-        height: `90%`,
-        width: `90%`,
+        height: `95%`,
+        width: `95%`,
         margin: `0`,
         alignContent: `center`,
         padding: `2%`,
         backdropFilter: `blur(10px)`,
         backgroundColor: `rgba(255, 255, 255, 0.5)`,
-        borderRadius: `15px`
+        borderRadius: `15px`,
+        boxShadow: `0px 1px 11px -2px #A86FA6`
     },
     nav: { 
-        height: `90%`,
+        height: `98%`,
         margin: `0 1% 0 2%`,
         borderRadius: `15px`,
-        backgroundColor: `#fff`
+        backgroundColor: `#fff`,
+        boxShadow: `0px 1px 11px -2px #FFDCFF`
     },
     user: {
         display: `flex`,
@@ -112,16 +114,11 @@ const style = makeStyles({
         padding: `1%`
     },
     icon: {
-        boxShadow: `2px 2px 15px #eadee2`
-    },
-    try: {
-        width: `100%`
+        boxShadow: `2px 2px 15px #ffd6fb`
     },
     content: {
-        backgroundColor: `black`,
         height: `100%`,
-        width: `100%`,
-        color: `#fff`
+        width: `100%`
     },
 })
 

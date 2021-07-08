@@ -1,7 +1,8 @@
 import React from 'react'
 import { 
     IconButton,
-    InputBase
+    InputBase,
+    Typography
 } from '@material-ui/core'
 import { 
     Search,
@@ -14,19 +15,20 @@ const TopNav = () => {
     const classes = style();
     return (
         <div className={classes.root}>
-            <div>
-                Hello User
+            <div className={classes.username}>
+                <Typography classes={{root: classes.title}}>Hello User</Typography>
             </div>
-            <div>
+            <div className={classes.searchContent}>
                 <InputBase 
                     placeholder="Search…"
                     inputProps={{ 'aria-label': 'search' }}
+                    classes={{root: classes.searchInput}}
                 />
                 <div>
-                    <Search />
+                    <Search classes={{root: classes.searchIcon}} />
                 </div>
             </div>
-            <div>
+            <div className={classes.funcBtn}>
                 <IconButton>
                     <LocalMall />
                 </IconButton>
@@ -43,8 +45,33 @@ const style = makeStyles({
         display: `flex`,
         justifyContent: `space-between`,
         width: `100%`,
-        backgroundColor: `#fff`,
         color: `black`
+    },
+    username: {
+        display: `flex`,
+        alignItems: `center`
+    },
+    title: {
+    },
+    searchContent: {
+        display: `flex`,
+        alignItems: `center`
+    },
+    searchInput: {
+        borderRadius: `15px`,
+        padding: `10px`,
+        textAlign: `center`,
+        width: `20vw`,
+        height: `3vh`,
+        backdropFilter: `blur(10px)`,
+        backgroundColor: `rgba(255, 255, 255, 0.5)`,
+    },
+    searchIcon: {
+        position: `absolute`,
+        transform: `translate(-120%, -50%)`
+    },
+    funcBtn: {
+
     }
 });
 
