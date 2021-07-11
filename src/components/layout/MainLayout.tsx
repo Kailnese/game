@@ -4,67 +4,53 @@ import {
     ListItem,
     IconButton,
     Grid,
-    Avatar
+    Avatar,
+    Icon
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import {
-    Home,
-    SportsEsports,
-    PeopleAlt,
-    NewReleases,
-    PieChart,
-    Settings
-} from '@material-ui/icons'
+import { withRouter } from 'react-router'
 
 import user from '../../images/1.jpeg'
 import bgImage from '../../images/background.jpeg'
+import TopNav from '../../common/topNav/TopNav'
+
+import routes from '../../router'
 
 const MainLayout = (props:any) => {
     const classes = style();
+    const handleNav = (path:string) => {
+        props.history.push(path);
+    }
+
     return (
         <div className={classes.root}>
             <Grid container spacing={3} classes={{root: classes.container}}>
                 <Grid item classes={{root: classes.nav}}>
                     <List>
-                        <ListItem>
-                            <IconButton>
-                                <Home />
-                            </IconButton>
-                        </ListItem>
-                        <ListItem>
-                            <IconButton>
-                                <SportsEsports />
-                            </IconButton>
-                        </ListItem>
-                        <ListItem>
-                            <IconButton>
-                                <PeopleAlt />
-                            </IconButton>
-                        </ListItem>
-                        <ListItem>
-                            <IconButton>
-                                <NewReleases />
-                            </IconButton>
-                        </ListItem>
-                        <ListItem>
-                            <IconButton>
-                                <PieChart />
-                            </IconButton>
-                        </ListItem>
-                        <ListItem>
-                            <IconButton>
-                                <Settings />
-                            </IconButton>
-                        </ListItem>
+                        {routes.map(item => {
+                            return (
+                                <ListItem>
+                                    <IconButton 
+                                        onClick={() => handleNav(item.path)}
+                                    >
+                                        <Icon 
+                                            component={item.btn} 
+                                            className={classes.btn}
+                                        />
+                                    </IconButton>
+                                </ListItem>
+                            )
+                        })}
                     </List> 
                     <div className={classes.user}>
-                        <IconButton classes={{root: classes.iconBtn}}>
-                            <Avatar alt="user" src={user} classes={{root: classes.icon}} />
+                        <IconButton classes={{root: classes.avatarBtn}}>
+                            <Avatar alt="user" src={user} classes={{root: classes.avatar}} />
                         </IconButton>
                     </div>
                 </Grid>
                 <Grid item xs={10}>
                     <div className={classes.content}>
+                        <TopNav />
                         {props.children}
                     </div>
                 </Grid>
@@ -103,17 +89,20 @@ const style = makeStyles({
         backgroundColor: `#fff`,
         boxShadow: `0px 1px 11px -2px #FFDCFF`
     },
+    btn: {
+        borderBottom: `solid 1px black`
+    },
     user: {
         display: `flex`,
         alignItems: `flex-end`,
         justifyContent: `center`,
         height: `40%`
     },
-    iconBtn: {
+    avatarBtn: {
         height: `50px`,
         padding: `1%`
     },
-    icon: {
+    avatar: {
         boxShadow: `2px 2px 15px #ffd6fb`
     },
     content: {
@@ -122,4 +111,4 @@ const style = makeStyles({
     },
 })
 
-export default MainLayout;
+export default withRouter(MainLayout);

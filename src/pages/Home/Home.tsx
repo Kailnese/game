@@ -1,30 +1,38 @@
 import React from 'react'
 import {
-
+    Grid
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-
-import TopNav from '../../common/topNav/TopNav';
 
 const Home = () => {
     const classes = style();
     return (
-        <div className={classes.root}>
-            <TopNav />
-            <div className={classes.content}>
-                hello content
-            </div>
-        </div>
+        <Grid container>
+            <Grid 
+                xs={9}
+                className={classes.leftContent}
+            >
+                This is Home left page
+            </Grid>
+            <Grid 
+                xs={3}
+                className={classes.rightContent}
+            >
+                This is Home right page
+            </Grid>
+        </Grid>
     )
 }
 
 const style = makeStyles({
     root: {
-
+        display: `flex`
     },
-    content: {
-        backgroundColor: `pink`,
-        height: `80vh`
+    leftContent: {
+        backgroundColor: `pink`
+    },
+    rightContent: {
+        backgroundColor: `red`
     }
 });
 
