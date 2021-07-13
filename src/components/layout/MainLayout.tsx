@@ -20,6 +20,7 @@ const MainLayout = (props:any) => {
     const classes = style();
     const handleNav = (path:string) => {
         props.history.push(path);
+        console.log(props.history)
     }
 
     return (
@@ -32,10 +33,12 @@ const MainLayout = (props:any) => {
                                 <ListItem>
                                     <IconButton 
                                         onClick={() => handleNav(item.path)}
+                                        className={`${classes.btn} ${item.path === props.history.location.pathname ? classes.active: ""}`}
                                     >
                                         <Icon 
                                             component={item.btn} 
-                                            className={classes.btn}
+                                            color={item.path === props.history.location.pathname ? "primary" : "inherit"}
+                                            classes={{colorPrimary: classes.activeBtn}}
                                         />
                                     </IconButton>
                                 </ListItem>
@@ -90,7 +93,36 @@ const style = makeStyles({
         boxShadow: `0px 1px 11px -2px #FFDCFF`
     },
     btn: {
-        borderBottom: `solid 1px black`
+        '&::after': {
+            content: '""',
+            position: 'absolute',
+            width: '50%',
+            height: '0.175rem',
+            left: '25%',
+            bottom: '0',
+            background: '#f86de1',
+            transition: 'transform 0.3s ease',
+            transform: 'scale(0, 1)'
+        },
+        '&:hover::after': {
+            transform: 'scale(1, 1)'
+        }
+    },
+    active: {
+        '&::after': {
+            content: '""',
+            position: 'absolute',
+            width: '50%',
+            height: '0.175rem',
+            left: '25%',
+            bottom: '0',
+            background: '#f86de1',
+            transition: 'transform 0.3s ease',
+            transform: 'scale(1, 1)'
+        }
+    },
+    activeBtn: {
+        color: '#f86de1'
     },
     user: {
         display: `flex`,
